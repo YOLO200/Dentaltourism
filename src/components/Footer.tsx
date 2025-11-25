@@ -1,7 +1,7 @@
 import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
-import logo from 'figma:asset/06ee566349bc58de0e08ce21064840848c1113a8.png';
+import logo from '../assets/logo.png';
 
 interface FooterProps {
   onNavigate: (page: 'home' | 'treatments' | 'destinations' | 'clinics' | 'quote') => void;

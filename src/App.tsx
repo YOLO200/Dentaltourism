@@ -10,17 +10,22 @@ import { Footer } from './components/Footer';
 export default function App() {
   const [currentPage, setCurrentPage] = useState<'home' | 'treatments' | 'destinations' | 'clinics' | 'quote'>('home');
 
+  const handleNavigate = (page: 'home' | 'treatments' | 'destinations' | 'clinics' | 'quote') => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-white">
-      <Navigation currentPage={currentPage} onNavigate={setCurrentPage} />
-      
-      {currentPage === 'home' && <HomePage onNavigate={setCurrentPage} />}
-      {currentPage === 'treatments' && <TreatmentsPage onNavigate={setCurrentPage} />}
-      {currentPage === 'destinations' && <DestinationsPage onNavigate={setCurrentPage} />}
-      {currentPage === 'clinics' && <ClinicsPage onNavigate={setCurrentPage} />}
+      <Navigation currentPage={currentPage} onNavigate={handleNavigate} />
+
+      {currentPage === 'home' && <HomePage onNavigate={handleNavigate} />}
+      {currentPage === 'treatments' && <TreatmentsPage onNavigate={handleNavigate} />}
+      {currentPage === 'destinations' && <DestinationsPage onNavigate={handleNavigate} />}
+      {currentPage === 'clinics' && <ClinicsPage onNavigate={handleNavigate} />}
       {currentPage === 'quote' && <QuoteFormPage />}
-      
-      <Footer onNavigate={setCurrentPage} />
+
+      <Footer onNavigate={handleNavigate} />
     </div>
   );
 }
