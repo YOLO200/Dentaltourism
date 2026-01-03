@@ -1,11 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 
-interface HeroSectionProps {
-  onNavigate: (page: 'home' | 'treatments' | 'destinations' | 'clinics' | 'quote') => void;
-}
-
-export function HeroSection({ onNavigate }: HeroSectionProps) {
+export function HeroSection() {
+  const navigate = useNavigate();
   return (
     <div className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -30,15 +28,15 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-            <Button 
-              onClick={() => onNavigate('quote')}
+            <Button
+              onClick={() => navigate('/quote')}
               className="bg-[#007AB6] hover:bg-[#005A8A] text-white px-8 py-6 rounded-lg"
               size="lg"
             >
               Request Free Quote
             </Button>
-            <Button 
-              onClick={() => onNavigate('treatments')}
+            <Button
+              onClick={() => navigate('/treatments')}
               variant="outline"
               className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white hover:text-[#007AB6] px-8 py-6 rounded-lg"
               size="lg"
@@ -46,13 +44,6 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
               Browse Treatments
             </Button>
           </div>
-        </div>
-      </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-white rounded-full flex items-start justify-center p-2">
-          <div className="w-1 h-3 bg-white rounded-full"></div>
         </div>
       </div>
     </div>

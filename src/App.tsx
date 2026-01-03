@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import { Navigation } from './components/Navigation';
 import { HomePage } from './components/HomePage';
 import { TreatmentsPage } from './components/TreatmentsPage';
@@ -7,25 +8,39 @@ import { ClinicsPage } from './components/ClinicsPage';
 import { QuoteFormPage } from './components/QuoteFormPage';
 import { Footer } from './components/Footer';
 
-export default function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'treatments' | 'destinations' | 'clinics' | 'quote'>('home');
+function ScrollToTop() {
+  const { pathname } = useLocation();
 
-  const handleNavigate = (page: 'home' | 'treatments' | 'destinations' | 'clinics' | 'quote') => {
-    setCurrentPage(page);
+  useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  }, [pathname]);
 
+  return null;
+}
+
+function AppContent() {
   return (
     <div className="min-h-screen bg-white">
-      <Navigation currentPage={currentPage} onNavigate={handleNavigate} />
+      <ScrollToTop />
+      <Navigation />
 
-      {currentPage === 'home' && <HomePage onNavigate={handleNavigate} />}
-      {currentPage === 'treatments' && <TreatmentsPage onNavigate={handleNavigate} />}
-      {currentPage === 'destinations' && <DestinationsPage onNavigate={handleNavigate} />}
-      {currentPage === 'clinics' && <ClinicsPage onNavigate={handleNavigate} />}
-      {currentPage === 'quote' && <QuoteFormPage />}
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/treatments" element={<TreatmentsPage />} />
+        <Route path="/destinations" element={<DestinationsPage />} />
+        <Route path="/clinics" element={<ClinicsPage />} />
+        <Route path="/quote" element={<QuoteFormPage />} />
+      </Routes>
 
-      <Footer onNavigate={handleNavigate} />
+      <Footer />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
   );
 }

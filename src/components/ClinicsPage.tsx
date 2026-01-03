@@ -1,129 +1,198 @@
-import { MapPin, Star, Award, Phone, Mail, Globe, CheckCircle } from 'lucide-react';
-import { Button } from './ui/button';
-import { ImageWithFallback } from './figma/ImageWithFallback';
+import { useNavigate } from "react-router-dom";
+import {
+  MapPin,
+  Star,
+  Award,
+  Phone,
+  Mail,
+  Globe,
+  CheckCircle,
+} from "lucide-react";
+import { Button } from "./ui/button";
+import { ImageWithFallback } from "./figma/ImageWithFallback";
+import cdhImage from "../assets/CDH.png";
 
-interface ClinicsPageProps {
-  onNavigate: (page: 'home' | 'treatments' | 'destinations' | 'clinics' | 'quote') => void;
-}
-
-export function ClinicsPage({ onNavigate }: ClinicsPageProps) {
+export function ClinicsPage() {
+  const navigate = useNavigate();
   const clinics = [
     {
-      name: 'Elite Dental Care Mumbai',
-      location: 'Bandra, Mumbai, Maharashtra',
-      city: 'Mumbai',
-      image: 'https://images.unsplash.com/photo-1762625570087-6d98fca29531?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBkZW50YWwlMjBvZmZpY2V8ZW58MXx8fHwxNzYzMjEwNzg2fDA&ixlib=rb-4.1.0&q=80&w=1080',
+      name: "Elite Dental Care Mumbai",
+      location: "Bandra, Mumbai, Maharashtra",
+      city: "Mumbai",
+      image:
+        "https://images.unsplash.com/photo-1762625570087-6d98fca29531?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBkZW50YWwlMjBvZmZpY2V8ZW58MXx8fHwxNzYzMjEwNzg2fDA&ixlib=rb-4.1.0&q=80&w=1080",
       rating: 4.9,
       reviews: 520,
-      specialties: ['Dental Implants', 'Porcelain Veneers', 'Full Mouth Rehabilitation', 'Cosmetic Dentistry'],
-      accreditations: ['ISO 9001', 'JCI Accredited', 'NABH'],
-      languages: ['English', 'Hindi', 'Marathi'],
-      experience: '25+ years',
-      description: 'Premier dental clinic specializing in advanced implantology and cosmetic procedures with state-of-the-art technology.',
+      specialties: [
+        "Dental Implants",
+        "Porcelain Veneers",
+        "Full Mouth Rehabilitation",
+        "Cosmetic Dentistry",
+      ],
+      accreditations: ["ISO 9001", "JCI Accredited", "NABH"],
+      languages: ["English", "Hindi", "Marathi"],
+      experience: "25+ years",
+      description:
+        "Premier dental clinic specializing in advanced implantology and cosmetic procedures with state-of-the-art technology.",
     },
     {
-      name: 'Smile Experts New Delhi',
-      location: 'South Extension, New Delhi',
-      city: 'New Delhi',
-      image: 'https://images.unsplash.com/photo-1758206524132-72a2aa6639e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZW50YWwlMjB0ZWNobm9sb2d5JTIwZXF1aXBtZW50fGVufDF8fHx8MTc2MzI4MjUzMHww&ixlib=rb-4.1.0&q=80&w=1080',
+      name: "Smile Experts New Delhi",
+      location: "South Extension, New Delhi",
+      city: "New Delhi",
+      image:
+        "https://images.unsplash.com/photo-1758206524132-72a2aa6639e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZW50YWwlMjB0ZWNobm9sb2d5JTIwZXF1aXBtZW50fGVufDF8fHx8MTc2MzI4MjUzMHww&ixlib=rb-4.1.0&q=80&w=1080",
       rating: 4.8,
       reviews: 485,
-      specialties: ['Orthodontics', 'Invisalign', 'Teeth Whitening', 'Smile Makeover'],
-      accreditations: ['ISO 9001', 'JCI Accredited'],
-      languages: ['English', 'Hindi', 'Punjabi'],
-      experience: '20+ years',
-      description: 'Award-winning cosmetic dentistry practice known for creating beautiful, natural-looking smiles using cutting-edge techniques.',
+      specialties: [
+        "Orthodontics",
+        "Invisalign",
+        "Teeth Whitening",
+        "Smile Makeover",
+      ],
+      accreditations: ["ISO 9001", "JCI Accredited"],
+      languages: ["English", "Hindi", "Punjabi"],
+      experience: "20+ years",
+      description:
+        "Award-winning cosmetic dentistry practice known for creating beautiful, natural-looking smiles using cutting-edge techniques.",
     },
     {
-      name: 'Advanced Dental Institute Delhi',
-      location: 'Vasant Vihar, New Delhi',
-      city: 'New Delhi',
-      image: 'https://images.unsplash.com/photo-1762625570087-6d98fca29531?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBkZW50YWwlMjBvZmZpY2V8ZW58MXx8fHwxNzYzMjEwNzg2fDA&ixlib=rb-4.1.0&q=80&w=1080',
-      rating: 4.9,
-      reviews: 612,
-      specialties: ['Dental Implants', 'Root Canal Treatment', 'Periodontics', 'Oral Surgery'],
-      accreditations: ['ISO 9001', 'NABH', 'ADA International'],
-      languages: ['English', 'Hindi', 'Bengali'],
-      experience: '30+ years',
-      description: 'Comprehensive dental care center with a team of specialized dentists offering advanced treatments in a comfortable environment.',
+      name: "City Dental Hospital",
+      location: "Virani Chowk, Rajkot",
+      city: "Rajkot",
+      image: cdhImage,
+      rating: 5.0,
+      reviews: 3500,
+      specialties: [
+        "Dental Implants",
+        "Invisible Aligners",
+        "Full Mouth Rehabilitation",
+        "Laser Dentistry",
+      ],
+      accreditations: ["NABH Accredited", "Best Dental Hospital Award"],
+      languages: ["English", "Hindi", "Gujarati"],
+      experience: "15+ years",
+      description:
+        "First and only NABH accredited dental hospital in Saurashtra. Specializing in advanced implants with 10,500+ successful procedures and 30,000+ happy patients including 3,500+ international patients.",
     },
     {
-      name: 'Coastal Dental Goa',
-      location: 'Panaji, Goa',
-      city: 'Goa',
-      image: 'https://images.unsplash.com/photo-1762625570087-6d98fca29531?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBkZW50YWwlMjBvZmZpY2V8ZW58MXx8fHwxNzYzMjEwNzg2fDA&ixlib=rb-4.1.0&q=80&w=1080',
+      name: "Coastal Dental Goa",
+      location: "Panaji, Goa",
+      city: "Goa",
+      image:
+        "https://images.unsplash.com/photo-1762625570087-6d98fca29531?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBkZW50YWwlMjBvZmZpY2V8ZW58MXx8fHwxNzYzMjEwNzg2fDA&ixlib=rb-4.1.0&q=80&w=1080",
       rating: 4.8,
       reviews: 340,
-      specialties: ['General Dentistry', 'Aesthetic Dentistry', 'Crowns & Bridges', 'Teeth Cleaning'],
-      accreditations: ['ISO 9001', 'NABH'],
-      languages: ['English', 'Hindi', 'Konkani'],
-      experience: '15+ years',
-      description: 'Modern dental practice in a serene beach setting, perfect for combining dental care with a relaxing vacation.',
+      specialties: [
+        "General Dentistry",
+        "Aesthetic Dentistry",
+        "Crowns & Bridges",
+        "Teeth Cleaning",
+      ],
+      accreditations: ["ISO 9001", "NABH"],
+      languages: ["English", "Hindi", "Konkani"],
+      experience: "15+ years",
+      description:
+        "Modern dental practice in a serene beach setting, perfect for combining dental care with a relaxing vacation.",
     },
     {
-      name: 'Hyderabad Dental Specialists',
-      location: 'Jubilee Hills, Hyderabad',
-      city: 'Hyderabad',
-      image: 'https://images.unsplash.com/photo-1758206524132-72a2aa6639e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZW50YWwlMjB0ZWNobm9sb2d5JTIwZXF1aXBtZW50fGVufDF8fHx8MTc2MzI4MjUzMHww&ixlib=rb-4.1.0&q=80&w=1080',
+      name: "Hyderabad Dental Specialists",
+      location: "Jubilee Hills, Hyderabad",
+      city: "Hyderabad",
+      image:
+        "https://images.unsplash.com/photo-1758206524132-72a2aa6639e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZW50YWwlMjB0ZWNobm9sb2d5JTIwZXF1aXBtZW50fGVufDF8fHx8MTc2MzI4MjUzMHww&ixlib=rb-4.1.0&q=80&w=1080",
       rating: 4.7,
       reviews: 390,
-      specialties: ['Dental Implants', 'Cosmetic Dentistry', 'Pediatric Dentistry', 'Laser Dentistry'],
-      accreditations: ['ISO 9001', 'JCI Accredited'],
-      languages: ['English', 'Hindi', 'Telugu'],
-      experience: '18+ years',
-      description: 'High-tech dental facility offering comprehensive care with a focus on patient comfort and advanced treatment options.',
+      specialties: [
+        "Dental Implants",
+        "Cosmetic Dentistry",
+        "Pediatric Dentistry",
+        "Laser Dentistry",
+      ],
+      accreditations: ["ISO 9001", "JCI Accredited"],
+      languages: ["English", "Hindi", "Telugu"],
+      experience: "18+ years",
+      description:
+        "High-tech dental facility offering comprehensive care with a focus on patient comfort and advanced treatment options.",
     },
     {
-      name: 'International Dental Center Mumbai',
-      location: 'Andheri West, Mumbai',
-      city: 'Mumbai',
-      image: 'https://images.unsplash.com/photo-1762625570087-6d98fca29531?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBkZW50YWwlMjBvZmZpY2V8ZW58MXx8fHwxNzYzMjEwNzg2fDA&ixlib=rb-4.1.0&q=80&w=1080',
+      name: "International Dental Center Mumbai",
+      location: "Andheri West, Mumbai",
+      city: "Mumbai",
+      image:
+        "https://images.unsplash.com/photo-1762625570087-6d98fca29531?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBkZW50YWwlMjBvZmZpY2V8ZW58MXx8fHwxNzYzMjEwNzg2fDA&ixlib=rb-4.1.0&q=80&w=1080",
       rating: 4.9,
       reviews: 558,
-      specialties: ['Full Mouth Implants', 'Smile Design', 'Maxillofacial Surgery', 'Sedation Dentistry'],
-      accreditations: ['ISO 9001', 'JCI Accredited', 'NABH'],
-      languages: ['English', 'Hindi', 'Gujarati', 'Marathi'],
-      experience: '28+ years',
-      description: 'Internationally recognized dental center catering specifically to medical tourists with comprehensive treatment packages.',
+      specialties: [
+        "Full Mouth Implants",
+        "Smile Design",
+        "Maxillofacial Surgery",
+        "Sedation Dentistry",
+      ],
+      accreditations: ["ISO 9001", "JCI Accredited", "NABH"],
+      languages: ["English", "Hindi", "Gujarati", "Marathi"],
+      experience: "28+ years",
+      description:
+        "Internationally recognized dental center catering specifically to medical tourists with comprehensive treatment packages.",
     },
     {
-      name: 'Precision Dental Hyderabad',
-      location: 'Banjara Hills, Hyderabad',
-      city: 'Hyderabad',
-      image: 'https://images.unsplash.com/photo-1758206524132-72a2aa6639e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZW50YWwlMjB0ZWNobm9sb2d5JTIwZXF1aXBtZW50fGVufDF8fHx8MTc2MzI4MjUzMHww&ixlib=rb-4.1.0&q=80&w=1080',
+      name: "Precision Dental Hyderabad",
+      location: "Banjara Hills, Hyderabad",
+      city: "Hyderabad",
+      image:
+        "https://images.unsplash.com/photo-1758206524132-72a2aa6639e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZW50YWwlMjB0ZWNobm9sb2d5JTIwZXF1aXBtZW50fGVufDF8fHx8MTc2MzI4MjUzMHww&ixlib=rb-4.1.0&q=80&w=1080",
       rating: 4.8,
       reviews: 425,
-      specialties: ['Digital Dentistry', 'Same-Day Crowns', 'Veneers', 'Gum Treatment'],
-      accreditations: ['ISO 9001', 'NABH'],
-      languages: ['English', 'Hindi', 'Telugu', 'Tamil'],
-      experience: '22+ years',
-      description: 'Modern dental practice utilizing the latest digital dentistry technology for precise and efficient treatments.',
+      specialties: [
+        "Digital Dentistry",
+        "Same-Day Crowns",
+        "Veneers",
+        "Gum Treatment",
+      ],
+      accreditations: ["ISO 9001", "NABH"],
+      languages: ["English", "Hindi", "Telugu", "Tamil"],
+      experience: "22+ years",
+      description:
+        "Modern dental practice utilizing the latest digital dentistry technology for precise and efficient treatments.",
     },
     {
-      name: 'Goa Smile Studio',
-      location: 'Candolim, Goa',
-      city: 'Goa',
-      image: 'https://images.unsplash.com/photo-1762625570087-6d98fca29531?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBkZW50YWwlMjBvZmZpY2V8ZW58MXx8fHwxNzYzMjEwNzg2fDA&ixlib=rb-4.1.0&q=80&w=1080',
+      name: "Goa Smile Studio",
+      location: "Candolim, Goa",
+      city: "Goa",
+      image:
+        "https://images.unsplash.com/photo-1762625570087-6d98fca29531?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBkZW50YWwlMjBvZmZpY2V8ZW58MXx8fHwxNzYzMjEwNzg2fDA&ixlib=rb-4.1.0&q=80&w=1080",
       rating: 4.7,
       reviews: 298,
-      specialties: ['Cosmetic Dentistry', 'Teeth Whitening', 'Bonding', 'Preventive Care'],
-      accreditations: ['ISO 9001'],
-      languages: ['English', 'Hindi', 'Portuguese'],
-      experience: '12+ years',
-      description: 'Boutique dental practice focusing on cosmetic procedures in a relaxing, spa-like atmosphere near the beach.',
+      specialties: [
+        "Cosmetic Dentistry",
+        "Teeth Whitening",
+        "Bonding",
+        "Preventive Care",
+      ],
+      accreditations: ["ISO 9001"],
+      languages: ["English", "Hindi", "Portuguese"],
+      experience: "12+ years",
+      description:
+        "Boutique dental practice focusing on cosmetic procedures in a relaxing, spa-like atmosphere near the beach.",
     },
     {
-      name: 'Capital Dental Hub Delhi',
-      location: 'Connaught Place, New Delhi',
-      city: 'New Delhi',
-      image: 'https://images.unsplash.com/photo-1762625570087-6d98fca29531?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBkZW50YWwlMjBvZmZpY2V8ZW58MXx8fHwxNzYzMjEwNzg2fDA&ixlib=rb-4.1.0&q=80&w=1080',
+      name: "Capital Dental Hub Delhi",
+      location: "Connaught Place, New Delhi",
+      city: "New Delhi",
+      image:
+        "https://images.unsplash.com/photo-1762625570087-6d98fca29531?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBkZW50YWwlMjBvZmZpY2V8ZW58MXx8fHwxNzYzMjEwNzg2fDA&ixlib=rb-4.1.0&q=80&w=1080",
       rating: 4.8,
       reviews: 470,
-      specialties: ['Implantology', 'Orthodontics', 'Endodontics', 'Prosthodontics'],
-      accreditations: ['ISO 9001', 'JCI Accredited'],
-      languages: ['English', 'Hindi', 'Urdu'],
-      experience: '24+ years',
-      description: 'Centrally located multi-specialty dental clinic offering comprehensive care with easy access to major tourist attractions.',
+      specialties: [
+        "Implantology",
+        "Orthodontics",
+        "Endodontics",
+        "Prosthodontics",
+      ],
+      accreditations: ["ISO 9001", "JCI Accredited"],
+      languages: ["English", "Hindi", "Urdu"],
+      experience: "24+ years",
+      description:
+        "Centrally located multi-specialty dental clinic offering comprehensive care with easy access to major tourist attractions.",
     },
   ];
 
@@ -131,17 +200,21 @@ export function ClinicsPage({ onNavigate }: ClinicsPageProps) {
     <div className="pt-20">
       {/* Hero Section */}
       <div className="relative h-80 flex items-center justify-center overflow-hidden">
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1762625570087-6d98fca29531?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBkZW50YWwlMjBvZmZpY2V8ZW58MXx8fHwxNzYzMjEwNzg2fDA&ixlib=rb-4.1.0&q=80&w=1080)' }}
+          style={{
+            backgroundImage:
+              "url(https://images.unsplash.com/photo-1762625570087-6d98fca29531?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBkZW50YWwlMjBvZmZpY2V8ZW58MXx8fHwxNzYzMjEwNzg2fDA&ixlib=rb-4.1.0&q=80&w=1080)",
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#007AB6]/90 to-[#00A676]/80"></div>
-        
+
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
           <h1 className="text-white mb-4">Our Partner Clinics</h1>
           <p className="text-white/90 max-w-2xl mx-auto">
-            Browse through our network of ISO-certified and JCI-accredited dental clinics across India. 
-            Each clinic is carefully selected for quality, expertise, and international standards.
+            Browse through our network of ISO-certified and JCI-accredited
+            dental clinics across India. Each clinic is carefully selected for
+            quality, expertise, and international standards.
           </p>
         </div>
       </div>
@@ -168,8 +241,8 @@ export function ClinicsPage({ onNavigate }: ClinicsPageProps) {
           {/* Clinics Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {clinics.map((clinic, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="bg-white rounded-lg overflow-hidden shadow-[0_4px_10px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_20px_rgba(0,122,182,0.15)] transition-all duration-300 flex flex-col"
               >
                 {/* Clinic Image */}
@@ -197,14 +270,16 @@ export function ClinicsPage({ onNavigate }: ClinicsPageProps) {
                   </div>
 
                   {/* Description */}
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-3">{clinic.description}</p>
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                    {clinic.description}
+                  </p>
 
                   {/* Specialties */}
                   <div className="mb-4">
                     <p className="text-gray-700 text-sm mb-2">Specialties:</p>
                     <div className="flex flex-wrap gap-2">
                       {clinic.specialties.slice(0, 3).map((specialty, i) => (
-                        <span 
+                        <span
                           key={i}
                           className="px-2 py-1 bg-[#007AB6]/10 text-[#007AB6] rounded text-xs"
                         >
@@ -223,7 +298,7 @@ export function ClinicsPage({ onNavigate }: ClinicsPageProps) {
                   <div className="mb-4">
                     <div className="flex items-center gap-2 flex-wrap">
                       {clinic.accreditations.map((acc, i) => (
-                        <span 
+                        <span
                           key={i}
                           className="flex items-center gap-1 px-2 py-1 bg-[#00A676]/10 text-[#00A676] rounded text-xs"
                         >
@@ -238,10 +313,14 @@ export function ClinicsPage({ onNavigate }: ClinicsPageProps) {
                   <div className="mt-auto pt-4 border-t border-gray-100">
                     <div className="flex items-center justify-between text-sm mb-4">
                       <div className="text-gray-600">
-                        <span className="text-gray-700">{clinic.experience}</span> experience
+                        <span className="text-gray-700">
+                          {clinic.experience}
+                        </span>{" "}
+                        experience
                       </div>
                       <div className="text-gray-600">
-                        <span className="text-gray-700">{clinic.reviews}+</span> reviews
+                        <span className="text-gray-700">{clinic.reviews}+</span>{" "}
+                        reviews
                       </div>
                     </div>
 
@@ -249,13 +328,13 @@ export function ClinicsPage({ onNavigate }: ClinicsPageProps) {
                     <div className="flex items-center gap-2 mb-4 flex-wrap">
                       <Globe size={14} className="text-gray-500" />
                       <span className="text-gray-600 text-sm">
-                        {clinic.languages.join(', ')}
+                        {clinic.languages.join(", ")}
                       </span>
                     </div>
 
                     {/* CTA Button */}
-                    <Button 
-                      onClick={() => onNavigate('quote')}
+                    <Button
+                      onClick={() => navigate("/quote")}
                       className="w-full bg-[#007AB6] hover:bg-[#005A8A] text-white rounded-lg"
                     >
                       Request Consultation
@@ -272,9 +351,12 @@ export function ClinicsPage({ onNavigate }: ClinicsPageProps) {
       <div className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-gray-900 mb-4">Why Choose Our Partner Clinics?</h2>
+            <h2 className="text-gray-900 mb-4">
+              Why Choose Our Partner Clinics?
+            </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Every clinic in our network meets strict quality standards to ensure you receive world-class care.
+              Every clinic in our network meets strict quality standards to
+              ensure you receive world-class care.
             </p>
           </div>
 
@@ -282,24 +364,27 @@ export function ClinicsPage({ onNavigate }: ClinicsPageProps) {
             {[
               {
                 icon: CheckCircle,
-                title: 'Internationally Certified',
-                description: 'All clinics hold ISO, JCI, or NABH accreditation'
+                title: "Internationally Certified",
+                description: "All clinics hold ISO, JCI, or NABH accreditation",
               },
               {
                 icon: Award,
-                title: 'Expert Specialists',
-                description: 'Dentists with 15+ years of experience and international training'
+                title: "Expert Specialists",
+                description:
+                  "Dentists with 15+ years of experience and international training",
               },
               {
                 icon: Globe,
-                title: 'English Speaking Staff',
-                description: 'Seamless communication in English and other languages'
+                title: "English Speaking Staff",
+                description:
+                  "Seamless communication in English and other languages",
               },
               {
                 icon: Star,
-                title: 'Verified Reviews',
-                description: 'Real patient testimonials and high satisfaction ratings'
-              }
+                title: "Verified Reviews",
+                description:
+                  "Real patient testimonials and high satisfaction ratings",
+              },
             ].map((feature, index) => (
               <div key={index} className="text-center">
                 <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-[#007AB6]/10 to-[#00A676]/10 rounded-full flex items-center justify-center">
@@ -318,11 +403,12 @@ export function ClinicsPage({ onNavigate }: ClinicsPageProps) {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-white mb-4">Not Sure Which Clinic to Choose?</h2>
           <p className="text-white/90 mb-8 max-w-2xl mx-auto">
-            Our team will help you select the perfect clinic based on your specific treatment needs, 
-            budget, and preferred location. Get personalized recommendations today.
+            Our team will help you select the perfect clinic based on your
+            specific treatment needs, budget, and preferred location. Get
+            personalized recommendations today.
           </p>
-          <Button 
-            onClick={() => onNavigate('quote')}
+          <Button
+            onClick={() => navigate("/quote")}
             size="lg"
             className="bg-white text-[#007AB6] hover:bg-gray-100 rounded-lg px-8"
           >

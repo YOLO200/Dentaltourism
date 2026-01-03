@@ -7,17 +7,13 @@ import { WhyIndiaSection } from './WhyIndiaSection';
 import { TestimonialsSection } from './TestimonialsSection';
 import { BlogSection } from './BlogSection';
 
-interface HomePageProps {
-  onNavigate: (page: 'home' | 'treatments' | 'destinations' | 'clinics' | 'quote') => void;
-}
-
-export function HomePage({ onNavigate }: HomePageProps) {
+export function HomePage() {
   return (
     <div>
-      <HeroSection onNavigate={onNavigate} />
+      <HeroSection />
       <TrustBar />
-      <TreatmentsSection onNavigate={onNavigate} />
-      <DestinationsSection onNavigate={onNavigate} />
+      <TreatmentsSection />
+      <DestinationsSection />
       <HowItWorksSection />
       <WhyIndiaSection />
       <TestimonialsSection />

@@ -1,15 +1,34 @@
+import { useNavigate } from 'react-router-dom';
 import { MapPin, Hospital, Users, Star, Plane } from "lucide-react";
 import { Button } from "./ui/button";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
-interface DestinationsPageProps {
-  onNavigate: (
-    page: "home" | "treatments" | "destinations" | "clinics" | "quote"
-  ) => void;
-}
-
-export function DestinationsPage({ onNavigate }: DestinationsPageProps) {
+export function DestinationsPage() {
+  const navigate = useNavigate();
   const destinations = [
+    {
+      city: "Rajkot",
+      state: "Gujarat",
+      image:
+        "https://images.unsplash.com/photo-1609920658906-8223bd289001?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxSYWprb3QlMjBHdWphcmF0fGVufDF8fHx8MTczNDU1NzY0Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      description:
+        "Gujarat's vibrant healthcare city offering excellent dental care at highly competitive prices. Known for its warm hospitality, modern infrastructure, and rich cultural heritage from Mahatma Gandhi's birthplace.",
+      clinics: 18,
+      rating: 4.7,
+      highlights: [
+        "Well-connected domestic airport",
+        "18+ modern dental clinics",
+        "Most affordable treatment costs",
+        "Gujarati hospitality and culture",
+        "Clean and well-maintained city",
+      ],
+      attractions: [
+        "Watson Museum",
+        "Kaba Gandhi No Delo",
+        "Swaminarayan Temple",
+        "Jubilee Garden",
+      ],
+    },
     {
       city: "Mumbai",
       state: "Maharashtra",
@@ -218,7 +237,7 @@ export function DestinationsPage({ onNavigate }: DestinationsPageProps) {
 
                     {/* CTA */}
                     <Button
-                      onClick={() => onNavigate("quote")}
+                      onClick={() => navigate('/quote')}
                       className="bg-[#007AB6] hover:bg-[#005A8A] text-white rounded-lg"
                     >
                       Plan Your Visit to {destination.city}
@@ -316,7 +335,7 @@ export function DestinationsPage({ onNavigate }: DestinationsPageProps) {
             itinerary tailored to your needs.
           </p>
           <Button
-            onClick={() => onNavigate("quote")}
+            onClick={() => navigate('/quote')}
             size="lg"
             className="bg-white text-[#007AB6] hover:bg-gray-100 rounded-lg px-8"
           >
