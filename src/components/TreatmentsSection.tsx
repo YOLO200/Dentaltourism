@@ -1,12 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { Button } from './ui/button';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 
-interface TreatmentsSectionProps {
-  onNavigate: (page: 'home' | 'treatments' | 'destinations' | 'clinics' | 'quote') => void;
-}
-
-export function TreatmentsSection({ onNavigate }: TreatmentsSectionProps) {
+export function TreatmentsSection() {
+  const navigate = useNavigate();
   const treatments = [
     {
       title: 'Dental Implants',
@@ -77,7 +75,7 @@ export function TreatmentsSection({ onNavigate }: TreatmentsSectionProps) {
                 <h3 className="text-gray-900 mb-3">{treatment.title}</h3>
                 <p className="text-gray-600 mb-4">{treatment.description}</p>
                 <button 
-                  onClick={() => onNavigate('treatments')}
+                  onClick={() => navigate('/treatments')}
                   className="text-[#007AB6] hover:text-[#005A8A] flex items-center gap-2 group/link transition-colors"
                 >
                   Learn More

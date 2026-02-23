@@ -1,13 +1,11 @@
 import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
-import logo from 'figma:asset/06ee566349bc58de0e08ce21064840848c1113a8.png';
+import logo from '../assets/logo.png';
 
-interface FooterProps {
-  onNavigate: (page: 'home' | 'treatments' | 'destinations' | 'clinics' | 'quote') => void;
-}
-
-export function Footer({ onNavigate }: FooterProps) {
+export function Footer() {
+  const navigate = useNavigate();
   return (
     <footer id="footer" className="bg-gray-900 text-white pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,22 +44,22 @@ export function Footer({ onNavigate }: FooterProps) {
             <h3 className="text-white mb-4">Quick Links</h3>
             <ul className="space-y-3">
               <li>
-                <button onClick={() => onNavigate('treatments')} className="text-gray-400 hover:text-white transition-colors">
+                <button onClick={() => navigate('/treatments')} className="text-gray-400 hover:text-white transition-colors">
                   Treatments
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('destinations')} className="text-gray-400 hover:text-white transition-colors">
+                <button onClick={() => navigate('/destinations')} className="text-gray-400 hover:text-white transition-colors">
                   Destinations
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('clinics')} className="text-gray-400 hover:text-white transition-colors">
+                <button onClick={() => navigate('/clinics')} className="text-gray-400 hover:text-white transition-colors">
                   Clinics
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('quote')} className="text-gray-400 hover:text-white transition-colors">
+                <button onClick={() => navigate('/quote')} className="text-gray-400 hover:text-white transition-colors">
                   Get Quote
                 </button>
               </li>
