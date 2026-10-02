@@ -1,11 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import { MapPin } from 'lucide-react';
 import { Button } from './ui/button';
 
-interface DestinationsSectionProps {
-  onNavigate: (page: 'home' | 'treatments' | 'destinations' | 'clinics' | 'quote') => void;
-}
-
-export function DestinationsSection({ onNavigate }: DestinationsSectionProps) {
+export function DestinationsSection() {
+  const navigate = useNavigate();
   const destinations = [
     {
       city: 'Mumbai',
@@ -43,7 +41,7 @@ export function DestinationsSection({ onNavigate }: DestinationsSectionProps) {
           {destinations.map((destination, index) => (
             <div 
               key={index}
-              onClick={() => onNavigate('destinations')}
+              onClick={() => navigate('/destinations')}
               className="group relative h-80 rounded-lg overflow-hidden cursor-pointer shadow-[0_4px_10px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_20px_rgba(0,122,182,0.15)] transition-all duration-300"
             >
               <div 
