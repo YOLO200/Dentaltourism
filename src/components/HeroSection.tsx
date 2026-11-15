@@ -11,6 +11,8 @@ export function HeroSection() {
         <ImageWithFallback
           src="https://images.unsplash.com/photo-1684607632845-723f8f427110?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZW50YWwlMjBjbGluaWMlMjBwYXRpZW50JTIwc21pbGluZ3xlbnwxfHx8fDE3NjMyNTE0OTZ8MA&ixlib=rb-4.1.0&q=80&w=1080"
           alt="Smiling patient in modern dental clinic"
+          priority
+          sizes="100vw"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/30"></div>

@@ -31,12 +31,12 @@ export function generateImageSrcSet(url: string): string {
     return '';
   }
 
-  const widths = [640, 750, 828, 1080, 1200, 1920];
+  const widths = [200, 400, 640, 828, 1080, 1200, 1920];
   return widths
     .map(width => `${optimizeUnsplashUrl(url, width)} ${width}w`)
     .join(', ');
 }
 
 export function generateImageSizes(): string {
-  return '(max-width: 640px) 640px, (max-width: 1024px) 1080px, 1200px';
+  return '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px';
 }

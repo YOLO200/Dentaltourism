@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { optimizeUnsplashUrl, generateImageSrcSet, generateImageSizes } from '../../utils/imageOptimization'
 import { ImageSkeleton } from '../ui/image-skeleton'
 
@@ -8,61 +8,37 @@ const ERROR_IMG_SRC =
 interface ImageWithFallbackProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   showSkeleton?: boolean;
   aspectRatio?: 'square' | 'video' | 'wide' | 'tall';
+  /** Above-the-fold image (e.g. hero): load immediately with high priority instead of lazily. */
+  priority?: boolean;
 }
 
 export function ImageWithFallback(props: ImageWithFallbackProps) {
   const [didError, setDidError] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
-  const [isInView, setIsInView] = useState(false)
-  const imgRef = useRef<HTMLImageElement>(null)
 
-  const { src, alt, style, className, showSkeleton = true, aspectRatio = 'video', ...rest } = props
+  const {
+    src,
+    alt,
+    style,
+    className,
+    sizes,
+    showSkeleton = true,
+    aspectRatio = 'video',
+    priority = false,
+    ...rest
+  } = props
 
-  // Lazy loading with Intersection Observer
+  // Reset state when the image source changes (e.g. testimonial carousel)
   useEffect(() => {
-    if (!imgRef.current) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsInView(true)
-            observer.disconnect()
-          }
-        })
-      },
-      {
-        rootMargin: '50px', // Start loading 50px before the image enters viewport
-      }
-    )
-
-    observer.observe(imgRef.current)
-
-    return () => {
-      observer.disconnect()
-    }
-  }, [])
-
-  const handleError = () => {
-    setDidError(true)
-    setIsLoaded(true)
-  }
-
-  const handleLoad = () => {
-    setIsLoaded(true)
-  }
-
-  // Optimize image URL
-  const optimizedSrc = src ? optimizeUnsplashUrl(src) : src
-  const srcSet = src ? generateImageSrcSet(src) : undefined
-  const sizes = src ? generateImageSizes() : undefined
+    setDidError(false)
+    setIsLoaded(false)
+  }, [src])
 
   if (didError) {
     return (
       <div
         className={`inline-block bg-gray-100 text-center align-middle ${className ?? ''}`}
         style={style}
-        ref={imgRef as React.RefObject<HTMLDivElement>}
       >
         <div className="flex items-center justify-center w-full h-full">
           <img src={ERROR_IMG_SRC} alt="Error loading image" {...rest} data-original-url={src} />
@@ -71,27 +47,37 @@ export function ImageWithFallback(props: ImageWithFallbackProps) {
     )
   }
 
+  const optimizedSrc = src ? optimizeUnsplashUrl(src) : src
+  const srcSet = src ? generateImageSrcSet(src) || undefined : undefined
+  const fade = !priority
+
   return (
     <div className={`relative ${className ?? ''}`} style={style}>
-      {showSkeleton && !isLoaded && (
+      {showSkeleton && fade && !isLoaded && (
         <ImageSkeleton
           className="absolute inset-0 w-full h-full"
           aspectRatio={aspectRatio}
         />
       )}
       <img
-        ref={imgRef}
-        src={isInView ? optimizedSrc : undefined}
-        srcSet={isInView ? srcSet : undefined}
-        sizes={isInView ? sizes : undefined}
+        src={optimizedSrc}
+        srcSet={srcSet}
+        sizes={srcSet ? sizes ?? generateImageSizes() : undefined}
         alt={alt}
-        className={`${className ?? ''} transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+        className={`${className ?? ''}${
+          fade ? ` transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}` : ''
+        }`}
         style={style}
         {...rest}
-        onError={handleError}
-        onLoad={handleLoad}
-        loading="lazy"
-        decoding="async"
+        onError={() => {
+          setDidError(true)
+          setIsLoaded(true)
+        }}
+        onLoad={() => setIsLoaded(true)}
+        loading={priority ? 'eager' : 'lazy'}
+        // React 18 doesn't know the camelCase prop yet; lowercase passes through to the DOM
+        {...({ fetchpriority: priority ? 'high' : 'auto' } as Record<string, string>)}
+        decoding={priority ? 'sync' : 'async'}
       />
     </div>
   )

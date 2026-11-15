@@ -47,6 +47,7 @@ export function BlogSection() {
                 <ImageWithFallback
                   src={article.image}
                   alt={article.title}
+                  sizes="(max-width: 768px) 100vw, 400px"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
                 <div className="absolute top-4 left-4 bg-[#007AB6] text-white px-3 py-1 rounded-full text-sm">

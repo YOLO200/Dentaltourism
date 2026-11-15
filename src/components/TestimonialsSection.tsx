@@ -70,6 +70,7 @@ export function TestimonialsSection() {
                   <ImageWithFallback
                     src={testimonials[currentIndex].image}
                     alt={testimonials[currentIndex].name}
+                    sizes="96px"
                     className="w-full h-full object-cover"
                   />
                 </div>

@@ -99,6 +99,7 @@ export function WhyIndiaSection() {
             <ImageWithFallback
               src="https://images.unsplash.com/photo-1762625570087-6d98fca29531?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBkZW50YWwlMjBvZmZpY2V8ZW58MXx8fHwxNzYzMjEwNzg2fDA&ixlib=rb-4.1.0&q=80&w=1080"
               alt="Modern dental clinic"
+              sizes="(max-width: 768px) 100vw, 400px"
               className="w-full h-full object-cover"
             />
           </div>
@@ -106,6 +107,7 @@ export function WhyIndiaSection() {
             <ImageWithFallback
               src="https://images.unsplash.com/photo-1705077171489-b5dfcf144676?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxOZXclMjBEZWxoaSUyMEluZGlhJTIwZ2F0ZXxlbnwxfHx8fDE3NjMyODI1Mjh8MA&ixlib=rb-4.1.0&q=80&w=1080"
               alt="India landmark"
+              sizes="(max-width: 768px) 100vw, 400px"
               className="w-full h-full object-cover"
             />
           </div>
@@ -113,6 +115,7 @@ export function WhyIndiaSection() {
             <ImageWithFallback
               src="https://images.unsplash.com/photo-1625505826977-66d796089d73?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxHb2ElMjBiZWFjaCUyMHBhbG18ZW58MXx8fHwxNzYzMjgyNTI5fDA&ixlib=rb-4.1.0&q=80&w=1080"
               alt="Beach in India"
+              sizes="(max-width: 768px) 100vw, 400px"
               className="w-full h-full object-cover"
             />
           </div>
