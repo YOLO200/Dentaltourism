@@ -1,12 +1,14 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { Navigation } from './components/Navigation';
 import { HomePage } from './components/HomePage';
-import { TreatmentsPage } from './components/TreatmentsPage';
-import { DestinationsPage } from './components/DestinationsPage';
-import { ClinicsPage } from './components/ClinicsPage';
-import { QuoteFormPage } from './components/QuoteFormPage';
 import { Footer } from './components/Footer';
+
+// Secondary pages load on demand so the home page downloads less JavaScript
+const TreatmentsPage = lazy(() => import('./components/TreatmentsPage').then((m) => ({ default: m.TreatmentsPage })));
+const DestinationsPage = lazy(() => import('./components/DestinationsPage').then((m) => ({ default: m.DestinationsPage })));
+const ClinicsPage = lazy(() => import('./components/ClinicsPage').then((m) => ({ default: m.ClinicsPage })));
+const QuoteFormPage = lazy(() => import('./components/QuoteFormPage').then((m) => ({ default: m.QuoteFormPage })));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -24,6 +26,7 @@ function AppContent() {
       <ScrollToTop />
       <Navigation />
 
+      <Suspense fallback={<div className="min-h-screen" />}>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/treatments" element={<TreatmentsPage />} />
@@ -31,6 +34,7 @@ function AppContent() {
         <Route path="/clinics" element={<ClinicsPage />} />
         <Route path="/quote" element={<QuoteFormPage />} />
       </Routes>
+      </Suspense>
 
       <Footer />
     </div>

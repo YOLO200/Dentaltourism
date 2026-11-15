@@ -16,6 +16,25 @@ export function ClinicsPage() {
   const navigate = useNavigate();
   const clinics = [
     {
+      name: "City Dental Hospital",
+      location: "Virani Chowk, Rajkot",
+      city: "Rajkot",
+      image: cdhImage,
+      rating: 4.9,
+      reviews: 3500,
+      specialties: [
+        "Dental Implants",
+        "Invisible Aligners",
+        "Full Mouth Rehabilitation",
+        "Laser Dentistry",
+      ],
+      accreditations: ["NABH Accredited", "Best Dental Hospital Award"],
+      languages: ["English", "Hindi", "Gujarati"],
+      experience: "15+ years",
+      description:
+        "First and only NABH accredited dental hospital in Saurashtra. Specializing in advanced implants with 10,500+ successful procedures and 30,000+ happy patients including 3,500+ international patients.",
+    },
+    {
       name: "Elite Dental Care Mumbai",
       location: "Bandra, Mumbai, Maharashtra",
       city: "Mumbai",
@@ -54,25 +73,6 @@ export function ClinicsPage() {
       experience: "20+ years",
       description:
         "Award-winning cosmetic dentistry practice known for creating beautiful, natural-looking smiles using cutting-edge techniques.",
-    },
-    {
-      name: "City Dental Hospital",
-      location: "Virani Chowk, Rajkot",
-      city: "Rajkot",
-      image: cdhImage,
-      rating: 5.0,
-      reviews: 3500,
-      specialties: [
-        "Dental Implants",
-        "Invisible Aligners",
-        "Full Mouth Rehabilitation",
-        "Laser Dentistry",
-      ],
-      accreditations: ["NABH Accredited", "Best Dental Hospital Award"],
-      languages: ["English", "Hindi", "Gujarati"],
-      experience: "15+ years",
-      description:
-        "First and only NABH accredited dental hospital in Saurashtra. Specializing in advanced implants with 10,500+ successful procedures and 30,000+ happy patients including 3,500+ international patients.",
     },
     {
       name: "Coastal Dental Goa",

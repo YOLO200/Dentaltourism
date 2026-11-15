@@ -190,6 +190,7 @@ export function DestinationsPage() {
                       <ImageWithFallback
                         src={destination.image}
                         alt={destination.city}
+                        sizes="(max-width: 1024px) 100vw, 500px"
                         className="w-full h-full object-cover"
                       />
                     </div>

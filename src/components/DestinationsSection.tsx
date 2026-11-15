@@ -66,8 +66,8 @@ export function DestinationsSection() {
         </div>
 
         <div className="text-center mt-12">
-          <Button 
-            onClick={() => onNavigate('destinations')}
+          <Button
+            onClick={() => navigate('/destinations')}
             variant="outline"
             className="border-[#007AB6] text-[#007AB6] hover:bg-[#007AB6] hover:text-white rounded-lg px-8"
           >
